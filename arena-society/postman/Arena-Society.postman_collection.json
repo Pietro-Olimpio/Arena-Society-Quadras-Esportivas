@@ -1,0 +1,10 @@
+{
+  "info": {"name":"API Arena Society","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},
+  "variable":[{"key":"base_url","value":"http://127.0.0.1:8000"},{"key":"token","value":""},{"key":"email","value":"admin@arenasociety"},{"key":"password","value":""}],
+  "item":[
+    {"name":"Login Sanctum","request":{"method":"POST","header":[{"key":"Accept","value":"application/json"},{"key":"Content-Type","value":"application/json"}],"body":{"mode":"raw","raw":"{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\"\n}"},"url":{"raw":"{{base_url}}/api/login","host":["{{base_url}}"],"path":["api","login"]}},"event":[{"listen":"test","script":{"exec":["if (pm.response.code === 200) pm.collectionVariables.set('token', pm.response.json().token);"]}}]},
+    {"name":"Listar times","request":{"method":"GET","header":[{"key":"Accept","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{base_url}}/api/times","host":["{{base_url}}"],"path":["api","times"]}}},
+    {"name":"Listar catálogo","request":{"method":"GET","header":[{"key":"Accept","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{base_url}}/api/produtos","host":["{{base_url}}"],"path":["api","produtos"]}}},
+    {"name":"Criar agendamento","request":{"method":"POST","header":[{"key":"Accept","value":"application/json"},{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],"body":{"mode":"raw","raw":"{\n  \"time_id\": 1,\n  \"quadra\": \"Quadra 1\",\n  \"inicio_em\": \"2027-01-15T20:00:00-03:00\",\n  \"duracao_horas\": 1,\n  \"itens\": [{\"produto_id\": 2, \"quantidade\": 1}]\n}"},"url":{"raw":"{{base_url}}/api/agendamentos","host":["{{base_url}}"],"path":["api","agendamentos"]}}}
+  ]
+}
